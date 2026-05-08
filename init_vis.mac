@@ -1,0 +1,26 @@
+# Macro file for the initialization of example B4a
+# in interactive session
+#
+# Sets some defaults and defines visualization commands.
+
+/control/verbose 2
+/run/verbose 2
+
+# Create empty scene
+/vis/scene/create
+
+# Create scene handler for specific graphics system
+/vis/open OGL 600x600-0+0
+
+# Draw the tracks
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
+
+# Many other commands could be put here, to be executed
+# after initialization, if uncommented.
+# e.g.
+#/vis/viewer/set/viewpointThetaPhi 90. 0.
+#/vis/viewer/zoom 1.4
+
+/tracking/storeTrajectory 1
