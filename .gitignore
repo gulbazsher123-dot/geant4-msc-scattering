@@ -1,0 +1,32 @@
+# Build directories
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Executable
+mscScattering
+
+# Output files
+*.root
+*.txt
+*.out
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Object files
+*.o
+*.a
+*.so
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
