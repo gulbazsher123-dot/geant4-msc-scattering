@@ -1,0 +1,11 @@
+# Macro file for MSC Scattering simulation
+# Muon energy range: 100 MeV to 10 GeV (overlap region for different MSC models)
+
+/control/verbose 0
+/run/verbose 0
+
+# Visualization
+/vis/viewer/set/autoRefresh true
+
+# Run with 1 GeV muons - 100 events
+/run/beamOn 100
