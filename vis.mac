@@ -1,0 +1,88 @@
+# Macro file for the visualization setting in the initialization phase
+# of the B4a example when running in interactive mode
+#
+
+# Use this open statement to create an OpenGL window.
+# The default size of the window is set to 600x600-0+0.
+# Uncomment the following line if you want to change it.
+#
+/vis/open OGL 600x600-0+0
+#
+# Use this open statement to create an OpenInventor window.
+/vis/open OIX 600x600-0+0
+#
+# Use this open statement to create a .prim file suitable for
+# viewing in DAWN.
+#/vis/open DAWNFILE
+#
+# Use this open statement to create a .eps file suitable for
+# viewing in Postscript viewers (e.g. ghostview on UNIX).
+#/vis/open POSTSCRIPTFILE
+#
+# Disable auto refresh and quieten vis messages whilst scene and
+# trajectories are established:
+/vis/viewer/set/autoRefresh false
+/vis/verbose errors
+#
+# Draw geometry:
+/vis/drawVolume
+#
+# Specify view angle:
+/vis/viewer/set/viewpointThetaPhi 20 20
+#
+# Specify style of drawing.
+# Style 0 = wireframe; Style 1 = solid
+/vis/viewer/set/style 0
+#
+# Draw coordinate axes:
+/vis/scene/add/axes 0 0 0 10 m
+#
+# Draw smooth trajectories at end of event, showing trajectory points
+# as markers 2 pixels in size for each 10 events:
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
+/vis/scene/add/trajectories smooth
+#
+# Axes, etc.
+/vis/scene/add/hits
+#
+# To draw only 50 out of every 200 events, uncomment next line:
+# (This is useful if there are too many events to draw smoothly)
+# /vis/scene/endOfEventAction accumulate 50
+#
+# Then, to view accumulated shown events, uncomment next line:
+# /vis/viewer/update
+#
+# To get nice view
+# Make the "World" box invisible
+/vis/geometry/set/visibility World 0 false
+#
+# "Envelope" box invisible
+#/vis/geometry/set/visibility Envelope 0 false
+#
+# "Shape1" white
+#/vis/geometry/set/colour Shape1 0 1 1 1 1.0
+#
+# "Shape2" magenta
+#/vis/geometry/set/colour Shape2 0 1 0 1 1.0
+#
+# Refresh the view:
+/vis/viewer/flush
+/vis/viewer/set/autoRefresh true
+/vis/verbose warnings
+#
+# For file-based output use this command
+# /vis/open VRML2FILE
+#
+# Uncomment the line below if you want to write cumulative trajectory file.
+# (This file is written in each event, integrating accumulative trajectory points)
+# /tracking/storeTrajectory 2
+#
+# (Re)set target point.
+# Arguments (x,y,z) are in world's units such as mm, pc, km, etc.
+# Uncomment this line only if you have a target point defined.
+# /vis/viewer/set/targetPoint (0,0,(0,-10,0) mm
+# Change the line below to "/tracking/storeTrajectory 1" to accumulate tracks
+# of all events and display at end of file.
+/tracking/storeTrajectory 1
