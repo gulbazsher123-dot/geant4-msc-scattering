@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.16...3.21)
-project(MSCScattering)
+project(MSCScattering LANGUAGES CXX)
 
-# Find Geant4 package, activating all available UI and Vis drivers by default
-# You can set WITH_GEANT4_UIVIS to OFF via the command line or ccmake/cmake-gui
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Find Geant4 package
 option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" ON)
 if(WITH_GEANT4_UIVIS)
   find_package(Geant4 REQUIRED ui_all vis_all)
@@ -18,13 +20,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 file(GLOB sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${CMAKE_CURRENT_SOURCE_DIR}/include/*.hh)
 
-# Add the executable, and link it to the Geant4 libraries
+# Add the executable
 add_executable(mscScattering mscScattering.cc ${sources} ${headers})
 target_link_libraries(mscScattering ${Geant4_LIBRARIES})
 
-# Copy all scripts to the build directory, i.e. the directory in which we
-# build B4a. This is so that we can run the executable directly because it
-# relies on these scripts being in the current working directory.
+# Copy all scripts to the build directory
 set(MSCSCATTERING_SCRIPTS
   init_vis.mac
   run.mac
@@ -38,6 +38,3 @@ foreach(_script ${MSCSCATTERING_SCRIPTS})
     COPYONLY
     )
 endforeach()
-
-# For internal Geant4 use - but can be used by external projects too
-add_custom_target(MSCScattering DEPENDS mscScattering)
