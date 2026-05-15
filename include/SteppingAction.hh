@@ -15,14 +15,14 @@ class EventAction;
 class SteppingAction : public G4UserSteppingAction
 {
   public:
-    SteppingAction(DetectorConstruction* detectorConstruction,
+    SteppingAction(const DetectorConstruction* detectorConstruction,
                    EventAction* eventAction);
     virtual ~SteppingAction();
 
     virtual void UserSteppingAction(const G4Step* step);
 
   private:
-    DetectorConstruction*  fDetConstruction;
+    const DetectorConstruction*  fDetConstruction;
     EventAction*           fEventAction;
 };
 
